@@ -13,6 +13,15 @@ app.use(express.json());
 
 const chatService = new ChatService();
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: 'online',
+        service: 'Chat Service',
+        version: '1.0.0'
+    });
+});
+
+
 app.post('/chat', async (req, res) => {
     try {
         const { messages, assessmentContext } = req.body;

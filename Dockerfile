@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install the application dependencies
 # Note: We use npm install instead of ci because package-lock might not exist yet or be out of sync in dev
-RUN npm install --only=production
+RUN npm install
 
 # Copy the rest of the application code
 COPY . .
