@@ -45,6 +45,24 @@ import path from 'path';
 const swaggerDocument = YAML.load(path.join(__dirname, '../openapi.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+import fs from 'fs';
+app.get('/logs', (req, res) => {
+    const adminKey = req.query.key;
+    if (adminKey !== (process.env.ADMIN_KEY || 'admin123')) {
+        return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+
+    const logPath = path.join(__dirname, '../combined.log');
+    if (fs.existsSync(logPath)) {
+        const logs = fs.readFileSync(logPath, 'utf8');
+        // Return as plain text for easy reading
+        res.set('Content-Type', 'text/plain');
+        return res.send(logs);
+    } else {
+        return res.status(404).json({ success: false, message: 'Log file not found' });
+    }
+});
+
 import { validate } from './middleware/validate';
 import { ChatRequestSchema } from './schemas/chat.schema';
 

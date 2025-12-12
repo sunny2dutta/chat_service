@@ -608,3 +608,5 @@ ReferenceError: validate is not defined
 [32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:25:31.436Z"}
 [32minfo[39m: Decision made {"action":"GET_LAB_TEST","reasoning":"The combination of weight gain despite reduced intake, cold intolerance, dry skin, and fatigue strongly suggests hypothyroidism. A TSH test is needed to confirm thyroid dysfunction.","service":"chat-service","timestamp":"2025-12-12T06:25:33.747Z","uncertainty":30}
 [32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a TSH (Thyroid-Stimulating Hormone) test would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=TSH%20(Thyroid-Stimulating%20Hormone)%20test","service":"chat-service","timestamp":"2025-12-12T06:25:33.758Z"}
+[INFO] 11:59:45 Restarting: /Users/debaryadutta/chat-service/src/index.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:29:46.080Z"}
