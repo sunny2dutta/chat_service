@@ -540,3 +540,54 @@ ReferenceError: validate is not defined
 [32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:00:58.771Z"}
 [INFO] 11:31:09 Restarting: /Users/debaryadutta/chat-service/src/middleware/validate.ts has been modified
 [32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:01:10.003Z"}
+[INFO] 11:42:17 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:12:18.100Z"}
+[INFO] 11:43:53 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:13:54.675Z"}
+[INFO] 11:43:55 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:13:55.459Z"}
+[INFO] 11:44:02 Restarting: /Users/debaryadutta/chat-service/src/services/GraphService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:14:02.898Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:04.710Z"}
+[Decision] Action: CONSULT_DOCTOR, Uncertainty: 95/100, Reasoning: Red flags present: chest pain radiating to left arm, dizziness, and worsening symptoms. These are classic signs of a cardiac emergency (e.g., heart attack). Immediate medical attention is critical.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, I strongly recommend consulting a Emergency Medicine Specialist. \n\nHere is a link to help you find one: https://lmgtfy.app/?q=Emergency%20Medicine%20Specialist","service":"chat-service","timestamp":"2025-12-12T06:14:09.594Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:09.611Z"}
+[Decision] Action: GET_LAB_TEST, Uncertainty: 30/100, Reasoning: The user's fatigue, pallor, and vegetarian diet strongly suggest possible anemia (e.g., iron-deficiency or B12 deficiency). A lab test is needed to confirm the diagnosis and guide treatment.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a Complete Blood Count (CBC) and Iron Studies would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=Complete%20Blood%20Count%20(CBC)%20and%20Iron%20Studies","service":"chat-service","timestamp":"2025-12-12T06:14:12.809Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:12.812Z"}
+[Decision] Action: ASK_MORE_QUESTIONS, Uncertainty: 80/100, Reasoning: The user reports 'general malaise' without specific symptoms, leading to high uncertainty. Further details are needed to narrow the differential diagnosis.
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:17.134Z"}
+[INFO] 11:44:18 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:14:19.403Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:20.207Z"}
+[Decision] Action: CONSULT_DOCTOR, Uncertainty: 95/100, Reasoning: Red flags present: chest pain radiating to left arm with dizziness lasting 30 minutes and worsening. These are classic signs of myocardial infarction (heart attack) requiring immediate emergency evaluation.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, I strongly recommend consulting a Cardiologist or Emergency Medicine Specialist. \n\nHere is a link to help you find one: https://lmgtfy.app/?q=Cardiologist%20or%20Emergency%20Medicine%20Specialist","service":"chat-service","timestamp":"2025-12-12T06:14:24.919Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:24.929Z"}
+[Decision] Action: GET_LAB_TEST, Uncertainty: 30/100, Reasoning: The user presents a strong hypothesis of anemia (fatigue, pallor, vegetarian diet) with moderate uncertainty (could be other causes). A complete blood count (CBC) would confirm or rule out anemia efficiently.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a Complete Blood Count (CBC) would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=Complete%20Blood%20Count%20(CBC)","service":"chat-service","timestamp":"2025-12-12T06:14:27.312Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:27.316Z"}
+[Decision] Action: ASK_MORE_QUESTIONS, Uncertainty: 70/100, Reasoning: The user reports 'general malaise' without specific symptoms, leading to high uncertainty. Further details are needed to narrow the differential diagnosis.
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:14:30.746Z"}
+[Decision] Action: GET_LAB_TEST, Uncertainty: 25/100, Reasoning: Symptoms of weight gain despite reduced intake, cold intolerance, dry skin, and fatigue strongly suggest hypothyroidism. A TSH test is needed to confirm thyroid dysfunction.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a TSH (Thyroid-Stimulating Hormone) Test would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=TSH%20(Thyroid-Stimulating%20Hormone)%20Test","service":"chat-service","timestamp":"2025-12-12T06:14:32.948Z"}
+[INFO] 11:44:55 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:14:55.742Z"}
+[INFO] 11:47:41 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:17:42.045Z"}
+[INFO] 11:48:10 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:18:11.324Z"}
+[INFO] 11:48:12 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:18:12.487Z"}
+[INFO] 11:48:13 Restarting: /Users/debaryadutta/chat-service/src/services/GraphService.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:18:13.786Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:18:15.676Z"}
+[Decision] Action: CONSULT_DOCTOR, Uncertainty: 90/100, Reasoning: Red flags present: chest pain radiating to left arm, dizziness, and worsening symptoms. These are classic signs of a cardiac event (e.g., heart attack) which requires immediate medical attention.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, I strongly recommend consulting a Cardiologist. \n\nHere is a link to help you find one: https://lmgtfy.app/?q=Cardiologist","service":"chat-service","timestamp":"2025-12-12T06:18:18.218Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:18:18.229Z"}
+[Decision] Action: GET_LAB_TEST, Uncertainty: 30/100, Reasoning: The user's symptoms (fatigue, pallor) and vegetarian diet align with possible anemia. A specific hypothesis exists, and a lab test (e.g., CBC, iron studies) would confirm or rule out this diagnosis.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a Complete Blood Count (CBC) and Iron Panel would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=Complete%20Blood%20Count%20(CBC)%20and%20Iron%20Panel","service":"chat-service","timestamp":"2025-12-12T06:18:23.013Z"}
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:18:23.020Z"}
+[Decision] Action: ASK_MORE_QUESTIONS, Uncertainty: 65/100, Reasoning: The user reports 'general malaise' without specific symptoms, leading to high uncertainty. Further details are needed to narrow differential diagnoses.
+[32minfo[39m: Running decision logic via LangGraph... {"service":"chat-service","timestamp":"2025-12-12T06:18:26.664Z"}
+[Decision] Action: GET_LAB_TEST, Uncertainty: 30/100, Reasoning: The combination of weight gain despite reduced intake, cold intolerance, dry skin, and fatigue strongly suggests hypothyroidism. A TSH test is the most specific initial lab test to confirm this hypothesis.
+[32minfo[39m: Graph returned a final response (Action taken): {"graphResponse":"Based on your symptoms, getting a TSH (Thyroid-Stimulating Hormone) test would be very helpful. \n\nHere is a link to find this test: https://lmgtfy.app/?q=TSH%20(Thyroid-Stimulating%20Hormone)%20test","service":"chat-service","timestamp":"2025-12-12T06:18:28.925Z"}

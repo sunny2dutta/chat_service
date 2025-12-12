@@ -55,7 +55,7 @@ export class ChatService {
             
             RULES:
             1. Be empathetic, professional, and concise.
-            2. Ask ONE question at a time to gather more information.
+            2. CRITICAL: Ask EXACTLY ONE question at a time to gather more information. Do NOT ask multiple questions in a single response.
             3. Do NOT diagnose. Instead, suggest possibilities and next steps.
             4. If the user mentions "chest pain", "shortness of breath", or "severe pain", tell them to go to the ER immediately.
             
