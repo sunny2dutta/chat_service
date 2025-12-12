@@ -3,6 +3,8 @@ import { BaseMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
 import { DecisionService, DecisionResult } from "./DecisionService";
 import { ChatMessage } from "./ChatService";
 
+import logger from '../utils/logger';
+
 // Define the state using Annotation
 const GraphState = Annotation.Root({
     messages: Annotation<BaseMessage[]>({
@@ -69,7 +71,11 @@ export class GraphService {
         const decision = await this.decisionService.evaluateConversation(chatMessages);
 
         // Log the decision and uncertainty score
-        console.log(`[Decision] Action: ${decision.action}, Uncertainty: ${decision.uncertainty_score}/100, Reasoning: ${decision.reasoning}`);
+        logger.info('Decision made', {
+            action: decision.action,
+            uncertainty: decision.uncertainty_score,
+            reasoning: decision.reasoning
+        });
 
         return { decision };
     }

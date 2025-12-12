@@ -17,10 +17,8 @@ const logger = winston.createLogger({
     ]
 });
 
-// If we're in production, log to a file as well (optional, but good practice)
-if (process.env.NODE_ENV === 'production') {
-    logger.add(new winston.transports.File({ filename: 'error.log', level: 'error' }));
-    logger.add(new winston.transports.File({ filename: 'combined.log' }));
-}
+// Log to files in all environments (Cheap "dump" storage)
+logger.add(new winston.transports.File({ filename: 'error.log', level: 'error' }));
+logger.add(new winston.transports.File({ filename: 'combined.log' }));
 
 export default logger;
