@@ -22,16 +22,35 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/chat', async (req, res) => {
+import logger from './utils/logger';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+
+// Security Middleware
+app.use(helmet());
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: 'Too many requests from this IP, please try again later.'
+});
+app.use(limiter);
+
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
+
+// Load OpenAPI spec
+// Load OpenAPI spec
+const swaggerDocument = YAML.load(path.join(__dirname, '../openapi.yaml'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+import { validate } from './middleware/validate';
+import { ChatRequestSchema } from './schemas/chat.schema';
+
+app.post('/chat', validate(ChatRequestSchema), async (req, res) => {
     try {
         const { messages, assessmentContext } = req.body;
-
-        if (!messages || !Array.isArray(messages) || messages.length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: "Messages array is required"
-            });
-        }
 
         const response = await chatService.chat(messages, assessmentContext);
 
@@ -40,7 +59,7 @@ app.post('/chat', async (req, res) => {
             message: response
         });
     } catch (error: any) {
-        console.error('Chat endpoint error:', error);
+        logger.error('Chat endpoint error:', error);
         const errorMessage = error.message || 'Unknown error';
 
         if (errorMessage === 'Fireworks AI API key is not configured') {
@@ -72,5 +91,5 @@ app.post('/chat', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Chat service running on port ${port}`);
+    logger.info(`Chat service running on port ${port}`);
 });

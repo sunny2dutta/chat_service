@@ -1,3 +1,6 @@
+import { GraphService } from './GraphService';
+import logger from '../utils/logger';
+
 export interface ChatMessage {
     role: string;
     content: string;
@@ -14,10 +17,12 @@ interface FireworksResponse {
 export class ChatService {
     private apiUrl: string;
     private model: string;
+    private graphService: GraphService;
 
     constructor() {
         this.apiUrl = 'https://api.fireworks.ai/inference/v1/chat/completions';
         this.model = 'accounts/fireworks/models/qwen3-30b-a3b';
+        this.graphService = new GraphService();
     }
 
     async chat(messages: ChatMessage[], assessmentContext: string | null = null): Promise<string> {
@@ -27,23 +32,35 @@ export class ChatService {
             throw new Error('Fireworks AI API key is not configured');
         }
 
+        // Count user messages to determine if we should run the decision logic
+        const userMessageCount = messages.filter(m => m.role === 'user').length;
+
+        // Run decision logic via LangGraph if we have enough context (e.g., 3 or more user messages)
+        if (userMessageCount >= 3) {
+            logger.info('Running decision logic via LangGraph...');
+            const graphResponse = await this.graphService.run(messages);
+
+            if (graphResponse) {
+                logger.info('Graph returned a final response (Action taken):', { graphResponse });
+                return graphResponse;
+            }
+            // If graph returns null, it means ASK_MORE_QUESTIONS was chosen, so we continue to normal chat
+        }
+
         const systemMessage: ChatMessage = {
             role: 'system',
             content: `You are Menvy, an AI-powered men's wellness companion.
-
-CRITICAL INSTRUCTIONS:
-1. BE CONCISE: Keep your main response short (1-2 sentences).
-2. ONE QUESTION RULE: You MUST end every response with EXACTLY ONE short question to gather more information. Do not ask multiple questions.
-3. SEMI-DIAGNOSTIC APPROACH: Do not give generic advice immediately. Ask questions to understand the user's specific situation first (e.g., "How long have you felt this way?" or "Do you have any pain?").
-4. EVENTUAL ACTION: Only after gathering context, suggest specific actions (Lab Test, Doctor, Exercise).
-
-Your goal is to have a continuous back-and-forth conversation where you peel back the layers of the user's issue one question at a time.
-
-Important guidelines:
-- Never diagnose medical conditions definitively.
-- If the user asks about topics unrelated to health, wellness, or lifestyle, refuse to answer and respond with: "I can only answer health related questions. Do you have any health related questions?"
-
-${assessmentContext ? `User's assessment context: ${assessmentContext}` : ''}`
+            
+            Your goal is to help men understand their health symptoms and guide them to the right care.
+            
+            RULES:
+            1. Be empathetic, professional, and concise.
+            2. Ask ONE question at a time to gather more information.
+            3. Do NOT diagnose. Instead, suggest possibilities and next steps.
+            4. If the user mentions "chest pain", "shortness of breath", or "severe pain", tell them to go to the ER immediately.
+            
+            CONTEXT:
+            ${assessmentContext ? `User Assessment Context: ${assessmentContext}` : ''}`
         };
 
         const chatMessages = [systemMessage, ...messages];
@@ -66,7 +83,7 @@ ${assessmentContext ? `User's assessment context: ${assessmentContext}` : ''}`
 
             if (!response.ok) {
                 const errorData = await response.text();
-                console.error('Fireworks AI API error:', errorData);
+                logger.error('Fireworks AI API error:', errorData);
                 throw new Error(`AI service error: ${response.status}`);
             }
 
@@ -84,7 +101,7 @@ ${assessmentContext ? `User's assessment context: ${assessmentContext}` : ''}`
 
             throw new Error('No response from AI service');
         } catch (error) {
-            console.error('Chat service error:', error);
+            logger.error('Chat service error:', error);
             throw error;
         }
     }

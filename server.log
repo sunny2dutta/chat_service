@@ -1,0 +1,540 @@
+
+> chat-service@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 10:51:18 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+Chat service running on port 3001
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected token '<', "<think>
+Ok"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:87:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected token '<', "<think>
+Ok"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:87:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected token '<', "<think>
+Ok"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:87:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+[INFO] 10:52:02 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+Chat service running on port 3001
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Severe chest pain radiating to the left arm with dizziness lasting 30 minutes and worsening is concerning for cardiac issues (e.g., heart attack). This requires immediate medical evaluation.',
+  suggestion: 'Cardiologist or Emergency Department'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: "The user's symptoms of fatigue, paleness, and vegetarian diet raise suspicion for anemia (e.g., iron-deficiency or B12 deficiency anemia). A lab test is needed to confirm the diagnosis.",
+  suggestion: 'Complete Blood Count (CBC) with iron studies and vitamin B12 level'
+}
+Running decision logic...
+Decision result: {
+  action: 'ASK_MORE_QUESTIONS',
+  reasoning: "The user describes vague symptoms of general malaise without specific details. More information is needed to determine if there's an underlying condition requiring lab testing or medical consultation."
+}
+[INFO] 10:56:21 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+Chat service running on port 3001
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Severe chest pain radiating to the left arm with worsening over 30 minutes and dizziness raises concern for acute cardiac events (e.g., myocardial infarction). These are red flag symptoms requiring immediate medical evaluation.',
+  suggestion: 'Cardiologist or Emergency Services'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: "The user's symptoms of persistent fatigue, paleness, and vegetarian diet suggest possible anemia (e.g., iron-deficiency, B12, or folate deficiency). A lab test would confirm the diagnosis and guide treatment.",
+  suggestion: 'Complete blood count (CBC) with iron studies, vitamin B12, and folate levels'
+}
+Running decision logic...
+Decision result: {
+  action: 'ASK_MORE_QUESTIONS',
+  reasoning: 'The user describes vague symptoms of general malaise without specific details. More information is needed to differentiate between potential causes and determine appropriate next steps.',
+  suggestion: 'Ask about duration, associated symptoms, recent activities, and any changes in routine or stress levels.'
+}
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:94:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+[INFO] 10:56:57 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+Chat service running on port 3001
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Severe chest pain radiating to the left arm with worsening intensity and dizziness raises concern for acute cardiac events (e.g., myocardial infarction). These are red flag symptoms requiring immediate medical evaluation.',
+  suggestion: 'Cardiologist'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: "The user's fatigue, pallor, and vegetarian diet suggest possible anemia (e.g., iron-deficiency, B12, or folate deficiency). A lab test would confirm the diagnosis and guide treatment.",
+  suggestion: 'Complete Blood Count (CBC) with iron studies'
+}
+Running decision logic...
+Decision result: {
+  action: 'ASK_MORE_QUESTIONS',
+  reasoning: 'The user describes non-specific symptoms (general malaise) without additional details. More information is needed to differentiate between possible causes, such as duration, associated symptoms, or risk factors.',
+  suggestion: ''
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: 'The combination of unexplained weight gain despite reduced intake, cold intolerance, dry skin, and fatigue strongly suggests hypothyroidism. A thyroid function test (TSH, free T3/T4) would confirm or rule out this hypothesis.',
+  suggestion: 'Thyroid Function Test (TSH, Free T3, Free T4)'
+}
+[INFO] 11:10:16 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+Chat service running on port 3001
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Red flags present: severe chest pain radiating to left arm, worsening over 30 minutes, and dizziness. These symptoms strongly suggest possible cardiac emergency (e.g., myocardial infarction) requiring immediate medical evaluation.',
+  suggestion: 'Cardiologist'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: "The user's symptoms (fatigue, pallor) and vegetarian diet suggest possible anemia (e.g., iron-deficiency, B12 deficiency). A lab test would confirm or rule out anemia and identify specific deficiencies, directly addressing the hypothesis and guiding targeted treatment.",
+  suggestion: 'Complete Blood Count (CBC) with iron studies, vitamin B12, and folate levels'
+}
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unterminated string in JSON at position 404 (line 4 column 80)
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:105:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: 'The combination of weight gain despite reduced intake, cold intolerance, dry skin, and low energy strongly suggests hypothyroidism. A thyroid function test (TSH, free T4) is needed to confirm this hypothesis and guide treatment.',
+  suggestion: 'Thyroid Function Test'
+}
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Red flags present: severe chest pain radiating to left arm, worsening over 30 minutes, and dizziness. These symptoms strongly suggest possible cardiac emergency (e.g., myocardial infarction) requiring immediate medical evaluation.',
+  suggestion: 'Cardiologist'
+}
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:105:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'The user reports general malaise without specific symptoms or red flags, but the non-specific nature of the complaint warrants professional evaluation to identify potential underlying causes.',
+  suggestion: 'Primary Care Physician'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: 'The combination of weight gain with reduced caloric intake, cold intolerance, dry skin, and fatigue strongly suggests hypothyroidism. A TSH (Thyroid-Stimulating Hormone) test is the most cost-effective initial lab test to confirm or rule out thyroid dysfunction.',
+  suggestion: 'TSH (Thyroid-Stimulating Hormone) test'
+}
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-eee974953b274865979cd9d54e656134"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-ddbe0f512a4b4d9cbd6208c3d4af0ee8"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'The user is experiencing severe chest pain radiating to the left arm with worsening symptoms and dizziness, which are red flags for a potential cardiac event (e.g., heart attack). Immediate medical evaluation is critical.',
+  suggestion: 'Cardiologist'
+}
+Running decision logic...
+Decision service API error: 429
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'API error' }
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:105:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: 'The combination of weight gain despite reduced intake, cold intolerance, dry skin, and fatigue strongly suggests hypothyroidism. A thyroid function test (TSH, free T4) is needed to confirm this hypothesis and guide treatment.',
+  suggestion: 'Thyroid function panel (TSH, free T3, free T4)'
+}
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-86de0cf8297844cead7d53a2f3735e55"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-780afe742d1e4d308cbb3cecb86a7619"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-8dca9fdbf7f44978b61e43e9cf96679e"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+[INFO] 11:17:24 Restarting: /Users/debaryadutta/chat-service/src/services/DecisionService.ts has been modified
+Chat service running on port 3001
+Running decision logic...
+Decision result: {
+  action: 'CONSULT_DOCTOR',
+  reasoning: 'Red flags present: chest pain radiating to left arm, dizziness, and worsening symptoms. These are classic signs of a cardiac event (e.g., heart attack). Immediate medical evaluation is critical.',
+  suggestion: 'Go to the emergency room or call emergency services immediately.'
+}
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: "The user's symptoms (fatigue, pallor) combined with vegetarian diet (risk factor for iron-deficiency anemia or B12 deficiency) suggest a specific hypothesis. Lab tests can confirm anemia or nutrient deficiencies.",
+  suggestion: 'Complete blood count (CBC) with iron studies and vitamin B12 level'
+}
+Running decision logic...
+Failed to parse decision JSON: SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at DecisionService.<anonymous> (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:106:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/DecisionService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Decision result: { action: 'ASK_MORE_QUESTIONS', reasoning: 'JSON parse error' }
+Running decision logic...
+Decision result: {
+  action: 'GET_LAB_TEST',
+  reasoning: 'The combination of weight gain despite reduced intake, cold intolerance, dry skin, and low energy strongly suggests hypothyroidism. A thyroid function test (TSH, free T4) is needed to confirm this hypothesis.',
+  suggestion: 'Thyroid function test (TSH and free T4)'
+}
+Fireworks AI API error: {"error":{"message":"You have exceeded your rate limit for this API. Please try again later. For more information, see https://docs.fireworks.ai/guides/quotas_usage/rate-limits.","param":null,"code":"RATE_LIMIT_EXCEEDED","type":"error"},"request_id":"chatcmpl-15f32afc50f3459ca3473b23b7142ef3"}
+Chat service error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+Chat endpoint error: Error: AI service error: 429
+    at ChatService.<anonymous> (/Users/debaryadutta/chat-service/src/services/ChatService.ts:92:23)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/debaryadutta/chat-service/src/services/ChatService.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+[INFO] 11:22:52 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+Error: Cannot find module '@langchain/langgraph'
+Require stack:
+- /Users/debaryadutta/chat-service/src/services/GraphService.ts
+- /Users/debaryadutta/chat-service/src/services/ChatService.ts
+- /Users/debaryadutta/chat-service/src/index.ts
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1445:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/Users/debaryadutta/chat-service/src/services/GraphService.ts:1:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1688:14)
+[ERROR] 11:22:52 Error: Cannot find module '@langchain/langgraph'
+Require stack:
+- /Users/debaryadutta/chat-service/src/services/GraphService.ts
+- /Users/debaryadutta/chat-service/src/services/ChatService.ts
+- /Users/debaryadutta/chat-service/src/index.ts
+[INFO] 11:23:14 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+Chat service running on port 3001
+[INFO] 11:24:00 Restarting: /Users/debaryadutta/chat-service/src/services/GraphService.ts has been modified
+Chat service running on port 3001
+Running decision logic via LangGraph...
+Graph returned a final response (Action taken): Based on your symptoms, I strongly recommend consulting a Cardiologist. 
+
+Here is a link to help you find one: https://lmgtfy.app/?q=Cardiologist
+Running decision logic via LangGraph...
+Graph returned a final response (Action taken): Based on your symptoms, getting a Complete Blood Count (CBC) with iron studies would be very helpful. 
+
+Here is a link to find this test: https://lmgtfy.app/?q=Complete%20Blood%20Count%20(CBC)%20with%20iron%20studies
+Running decision logic via LangGraph...
+Running decision logic via LangGraph...
+Graph returned a final response (Action taken): Based on your symptoms, getting a TSH test would be very helpful. 
+
+Here is a link to find this test: https://lmgtfy.app/?q=TSH%20test
+[INFO] 11:27:38 Restarting: /Users/debaryadutta/chat-service/src/index.ts has been modified
+Chat service running on port 3001
+[INFO] 11:28:07 Restarting: /Users/debaryadutta/chat-service/src/index.ts has been modified
+ReferenceError: validate is not defined
+    at Object.<anonymous> (/Users/debaryadutta/chat-service/src/index.ts:39:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1688:14)
+    at Module._compile (/Users/debaryadutta/chat-service/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:69:33)
+    at node:internal/modules/cjs/loader:1820:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/debaryadutta/chat-service/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1423:32)
+    at Function._load (node:internal/modules/cjs/loader:1246:12)
+[ERROR] 11:28:08 ReferenceError: validate is not defined
+[INFO] 11:28:13 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+Compilation error in /Users/debaryadutta/chat-service/src/services/ChatService.ts
+[ERROR] 11:28:13 ⨯ Unable to compile TypeScript:
+src/services/ChatService.ts(1,3): error TS1443: Module declaration names may only use ' or " quoted strings.
+src/services/ChatService.ts(53,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,27): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,41): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,79): error TS1002: Unterminated string literal.
+src/services/ChatService.ts(56,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,18): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,23): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/ChatService.ts(56,26): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,29): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,34): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,49): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,55): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,62): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,71): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,75): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,81): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,86): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,89): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(56,93): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(58,10): error TS1005: ';' expected.
+src/services/ChatService.ts(59,4): error TS1005: ';' expected.
+src/services/ChatService.ts(59,37): error TS1005: ';' expected.
+src/services/ChatService.ts(60,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(60,16): error TS1005: ';' expected.
+src/services/ChatService.ts(60,20): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,24): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,33): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,36): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,43): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,53): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(61,16): error TS1005: ';' expected.
+src/services/ChatService.ts(61,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,49): error TS1005: ';' expected.
+src/services/ChatService.ts(61,63): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,67): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(62,16): error TS1005: ';' expected.
+src/services/ChatService.ts(62,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,28): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,77): error TS1005: ';' expected.
+src/services/ChatService.ts(62,97): error TS1005: ';' expected.
+src/services/ChatService.ts(62,102): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,105): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,108): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,111): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(62,115): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(64,12): error TS1005: ';' expected.
+src/services/ChatService.ts(65,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(76,39): error TS1005: ';' expected.
+src/services/ChatService.ts(76,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(89,34): error TS1005: ';' expected.
+src/services/ChatService.ts(89,37): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(89,52): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(111,1): error TS1160: Unterminated template literal.
+
+[INFO] 11:28:53 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+Compilation error in /Users/debaryadutta/chat-service/src/services/ChatService.ts
+[ERROR] 11:28:53 ⨯ Unable to compile TypeScript:
+src/services/ChatService.ts(1,3): error TS1443: Module declaration names may only use ' or " quoted strings.
+src/services/ChatService.ts(53,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,27): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,41): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,79): error TS1002: Unterminated string literal.
+src/services/ChatService.ts(55,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,18): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,23): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/ChatService.ts(55,26): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,29): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,34): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,49): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,55): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,62): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,71): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,75): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,81): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,86): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,89): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,93): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(57,10): error TS1005: ';' expected.
+src/services/ChatService.ts(58,4): error TS1005: ';' expected.
+src/services/ChatService.ts(58,37): error TS1005: ';' expected.
+src/services/ChatService.ts(59,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(59,16): error TS1005: ';' expected.
+src/services/ChatService.ts(59,20): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,24): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,33): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,36): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,43): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,53): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(60,16): error TS1005: ';' expected.
+src/services/ChatService.ts(60,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,49): error TS1005: ';' expected.
+src/services/ChatService.ts(60,63): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,67): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(61,16): error TS1005: ';' expected.
+src/services/ChatService.ts(61,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,28): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,77): error TS1005: ';' expected.
+src/services/ChatService.ts(61,97): error TS1005: ';' expected.
+src/services/ChatService.ts(61,102): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,105): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,108): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,111): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,115): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(63,12): error TS1005: ';' expected.
+src/services/ChatService.ts(64,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(75,39): error TS1005: ';' expected.
+src/services/ChatService.ts(75,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(88,34): error TS1005: ';' expected.
+src/services/ChatService.ts(88,37): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(88,52): error TS1434: Unexpected keyword or identifier.
+
+[INFO] 11:29:39 Restarting: /Users/debaryadutta/chat-service/src/index.ts has been modified
+[ERROR] 11:29:39 ⨯ Unable to compile TypeScript:
+src/services/ChatService.ts(1,3): error TS1443: Module declaration names may only use ' or " quoted strings.
+src/services/ChatService.ts(53,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,27): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,41): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1005: ';' expected.
+src/services/ChatService.ts(53,54): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(53,79): error TS1002: Unterminated string literal.
+src/services/ChatService.ts(55,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,18): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,23): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/ChatService.ts(55,26): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,29): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,34): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,49): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,55): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,62): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,71): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,75): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,81): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,86): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,89): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(55,93): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(57,10): error TS1005: ';' expected.
+src/services/ChatService.ts(58,4): error TS1005: ';' expected.
+src/services/ChatService.ts(58,37): error TS1005: ';' expected.
+src/services/ChatService.ts(59,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(59,16): error TS1005: ';' expected.
+src/services/ChatService.ts(59,20): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,24): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,33): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,36): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,38): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,43): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(59,53): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(60,16): error TS1005: ';' expected.
+src/services/ChatService.ts(60,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,49): error TS1005: ';' expected.
+src/services/ChatService.ts(60,63): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(60,67): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,13): error TS1003: Identifier expected.
+src/services/ChatService.ts(61,16): error TS1005: ';' expected.
+src/services/ChatService.ts(61,19): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,23): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,28): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,77): error TS1005: ';' expected.
+src/services/ChatService.ts(61,97): error TS1005: ';' expected.
+src/services/ChatService.ts(61,102): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,105): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,108): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,111): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(61,115): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(63,12): error TS1005: ';' expected.
+src/services/ChatService.ts(64,13): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(75,39): error TS1005: ';' expected.
+src/services/ChatService.ts(75,46): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(88,34): error TS1005: ';' expected.
+src/services/ChatService.ts(88,37): error TS1434: Unexpected keyword or identifier.
+src/services/ChatService.ts(88,52): error TS1434: Unexpected keyword or identifier.
+
+[INFO] 11:30:25 Restarting: /Users/debaryadutta/chat-service/src/services/ChatService.ts has been modified
+ReferenceError: validate is not defined
+    at Object.<anonymous> (/Users/debaryadutta/chat-service/src/index.ts:47:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1688:14)
+    at Module._compile (/Users/debaryadutta/chat-service/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:69:33)
+    at node:internal/modules/cjs/loader:1820:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/8h/58w_pj7x6bndly8npz57lm0m0000gn/T/ts-node-dev-hook-10874746353661546.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/debaryadutta/chat-service/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1423:32)
+    at Function._load (node:internal/modules/cjs/loader:1246:12)
+[ERROR] 11:30:26 ReferenceError: validate is not defined
+[INFO] 11:30:58 Restarting: /Users/debaryadutta/chat-service/src/index.ts has been modified
+[32minfo[39m: Chat service running on port 3001 {"service":"chat-service","timestamp":"2025-12-12T06:00:58.771Z"}
