@@ -1,7 +1,7 @@
 import { StateGraph, START, END, Annotation } from "@langchain/langgraph";
 import { BaseMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
 import { DecisionService, DecisionResult } from "./DecisionService";
-import { ChatMessage } from "./ChatService";
+import { ChatMessage, ServiceResponse } from "./ChatService";
 
 import logger from '../utils/logger';
 
@@ -15,7 +15,7 @@ const GraphState = Annotation.Root({
         reducer: (x, y) => y,
         default: () => undefined,
     }),
-    finalResponse: Annotation<string | undefined>({
+    finalResponse: Annotation<ServiceResponse | undefined>({
         reducer: (x, y) => y,
         default: () => undefined,
     })
@@ -82,25 +82,41 @@ export class GraphService {
 
     private async doctorToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
         const suggestion = state.decision?.suggestion || "Doctor";
-        const encodedQuery = encodeURIComponent(suggestion);
-        const lmgtfyLink = `https://lmgtfy.app/?q=${encodedQuery}`;
+        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
+        const encodedQuery = encodeURIComponent(suggestion + " near me");
+        const googleLink = `https://www.google.com/search?q=${encodedQuery}`;
 
-        const response = `Based on your symptoms, I strongly recommend consulting a ${suggestion}. \n\nHere is a link to help you find one: ${lmgtfyLink}`;
+        const response: ServiceResponse = {
+            message: `Based on your symptoms, I strongly recommend consulting a **${suggestion}**.${reasoning}`,
+            action: {
+                type: 'CONSULT_DOCTOR',
+                value: suggestion,
+                url: googleLink
+            }
+        };
 
         return { finalResponse: response };
     }
 
     private async labToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
         const suggestion = state.decision?.suggestion || "Lab Test";
-        const encodedQuery = encodeURIComponent(suggestion);
-        const lmgtfyLink = `https://lmgtfy.app/?q=${encodedQuery}`;
+        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
+        const encodedQuery = encodeURIComponent(suggestion + " near me");
+        const googleLink = `https://www.google.com/search?q=${encodedQuery}`;
 
-        const response = `Based on your symptoms, getting a ${suggestion} would be very helpful. \n\nHere is a link to find this test: ${lmgtfyLink}`;
+        const response: ServiceResponse = {
+            message: `Based on your symptoms, getting a **${suggestion}** would be very helpful.${reasoning}`,
+            action: {
+                type: 'GET_LAB_TEST',
+                value: suggestion,
+                url: googleLink
+            }
+        };
 
         return { finalResponse: response };
     }
 
-    public async run(messages: ChatMessage[]): Promise<string | null> {
+    public async run(messages: ChatMessage[]): Promise<ServiceResponse | null> {
         // Convert ChatMessages to BaseMessages
         const baseMessages = messages.map(m =>
             m.role === 'user' ? new HumanMessage(m.content) : new AIMessage(m.content)

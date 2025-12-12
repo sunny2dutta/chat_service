@@ -74,7 +74,8 @@ app.post('/chat', validate(ChatRequestSchema), async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: response
+            message: response.message,
+            action: response.action
         });
     } catch (error: any) {
         logger.error('Chat endpoint error:', error);

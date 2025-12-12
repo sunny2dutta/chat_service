@@ -60,6 +60,8 @@ export class DecisionService {
                - 0-20: Clear path identified (e.g., "Red flags present" or "Lab results confirmed").
 
             DECISION RULES:
+            - If (User says "booked", "scheduled", "will do it", or similar confirmation of previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to acknowledge)
+            - If (User says "skipped", "no", "later", "too expensive" to previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to discuss alternatives or reasons)
             - If (Red Flags) -> CONSULT_DOCTOR
             - Else If (Uncertainty > 40) -> ASK_MORE_QUESTIONS
             - Else If (Uncertainty <= 40 AND Specific Hypothesis exists AND Lab Test confirms it) -> GET_LAB_TEST

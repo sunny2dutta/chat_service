@@ -14,6 +14,17 @@ interface FireworksResponse {
     }>;
 }
 
+export interface ChatAction {
+    type: 'CONSULT_DOCTOR' | 'GET_LAB_TEST';
+    value: string;
+    url?: string;
+}
+
+export interface ServiceResponse {
+    message: string;
+    action?: ChatAction;
+}
+
 export class ChatService {
     private apiUrl: string;
     private model: string;
@@ -25,7 +36,7 @@ export class ChatService {
         this.graphService = new GraphService();
     }
 
-    async chat(messages: ChatMessage[], assessmentContext: string | null = null): Promise<string> {
+    async chat(messages: ChatMessage[], assessmentContext: string | null = null): Promise<ServiceResponse> {
         const apiKey = process.env.FIREWORKS_API_KEY;
 
         if (!apiKey) {
@@ -96,7 +107,7 @@ export class ChatService {
                 // Also handles unclosed <think> tags at the end of the string
                 content = content.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim();
 
-                return content;
+                return { message: content };
             }
 
             throw new Error('No response from AI service');
