@@ -48,6 +48,29 @@ export class ChatService {
 
         // Run decision logic via LangGraph if we have enough context (e.g., 3 or more user messages)
         if (userMessageCount >= 3) {
+            // INTERCEPT: Check if the user is responding "Yes" or "No" to a recommendation
+            const lastMessage = messages[messages.length - 1];
+            const previousMessage = messages[messages.length - 2];
+
+            if (lastMessage.role === 'user' && previousMessage && previousMessage.role === 'assistant') {
+                const content = lastMessage.content.trim().toLowerCase();
+                const prevContent = previousMessage.content.toLowerCase();
+
+                // Check if previous message was a recommendation (Doctor or Lab)
+                const isRecommendation = prevContent.includes('strongly recommend consulting') ||
+                    prevContent.includes('would be very helpful');
+
+                if (isRecommendation) {
+                    if (content === 'yes') {
+                        logger.info('Transforming "Yes" to booking confirmation');
+                        lastMessage.content = "I have booked the appointment.";
+                    } else if (content === 'no') {
+                        logger.info('Transforming "No" to skip confirmation');
+                        lastMessage.content = "I will not book the appointment right now.";
+                    }
+                }
+            }
+
             logger.info('Running decision logic via LangGraph...');
             const graphResponse = await this.graphService.run(messages);
 
