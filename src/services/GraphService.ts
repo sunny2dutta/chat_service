@@ -87,12 +87,11 @@ export class GraphService {
 
     private async doctorToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
         const suggestion = state.decision?.suggestion || "Doctor";
-        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
         const encodedQuery = encodeURIComponent(suggestion + " near me");
         const googleLink = `https://www.google.com/search?q=${encodedQuery}`;
 
         const response: ServiceResponse = {
-            message: `Based on your symptoms, I strongly recommend consulting a **${suggestion}**.${reasoning}`,
+            message: `Based on your symptoms, I strongly recommend consulting a **${suggestion}**.`,
             action: {
                 type: 'CONSULT_DOCTOR',
                 value: suggestion,
@@ -105,12 +104,11 @@ export class GraphService {
 
     private async labToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
         const suggestion = state.decision?.suggestion || "Lab Test";
-        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
         const encodedQuery = encodeURIComponent(suggestion + " near me");
         const googleLink = `https://www.google.com/search?q=${encodedQuery}`;
 
         const response: ServiceResponse = {
-            message: `Based on your symptoms, getting a **${suggestion}** would be very helpful.${reasoning}`,
+            message: `Based on your symptoms, getting a **${suggestion}** would be very helpful.`,
             action: {
                 type: 'GET_LAB_TEST',
                 value: suggestion,
@@ -123,10 +121,9 @@ export class GraphService {
 
     private async adviceToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
         const suggestion = state.decision?.suggestion || "Healthy lifestyle changes";
-        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
 
         const response: ServiceResponse = {
-            message: `Based on what you've told me, here is some advice: **${suggestion}**.${reasoning}`,
+            message: `Based on what you've told me, here is some advice: **${suggestion}**.`,
             // No action needed for advice, just the message
         };
 
