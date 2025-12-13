@@ -1,5 +1,7 @@
 import { GraphService } from './GraphService';
 import logger from '../utils/logger';
+import { config } from '../config';
+import { HttpClient } from '../utils/HttpClient';
 
 export interface ChatMessage {
     role: string;
@@ -30,18 +32,14 @@ export class ChatService {
     private model: string;
     private graphService: GraphService;
 
-    constructor() {
-        this.apiUrl = 'https://api.fireworks.ai/inference/v1/chat/completions';
-        this.model = 'accounts/fireworks/models/qwen3-30b-a3b';
-        this.graphService = new GraphService();
+    constructor(graphService?: GraphService) {
+        this.apiUrl = config.FIREWORKS_API_URL;
+        this.model = config.FIREWORKS_MODEL;
+        this.graphService = graphService || new GraphService();
     }
 
     async chat(messages: ChatMessage[], assessmentContext: string | null = null): Promise<ServiceResponse> {
-        const apiKey = process.env.FIREWORKS_API_KEY;
-
-        if (!apiKey) {
-            throw new Error('Fireworks AI API key is not configured');
-        }
+        const apiKey = config.FIREWORKS_API_KEY;
 
         // Count user messages to determine if we should run the decision logic
         const userMessageCount = messages.filter(m => m.role === 'user').length;
@@ -100,26 +98,14 @@ export class ChatService {
         const chatMessages = [systemMessage, ...messages];
 
         try {
-            const response = await fetch(this.apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: this.model,
-                    max_tokens: 1500, // Increased to ensure thinking completes
-                    temperature: 0.7,
-                    messages: chatMessages
-                })
+            const response = await HttpClient.post(this.apiUrl, {
+                model: this.model,
+                max_tokens: 1500, // Increased to ensure thinking completes
+                temperature: 0.7,
+                messages: chatMessages
+            }, {
+                'Authorization': `Bearer ${apiKey}`
             });
-
-            if (!response.ok) {
-                const errorData = await response.text();
-                logger.error('Fireworks AI API error:', errorData);
-                throw new Error(`AI service error: ${response.status}`);
-            }
 
             const data = await response.json() as FireworksResponse;
 

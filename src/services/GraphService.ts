@@ -25,8 +25,8 @@ export class GraphService {
     private decisionService: DecisionService;
     private app: any;
 
-    constructor() {
-        this.decisionService = new DecisionService();
+    constructor(decisionService?: DecisionService) {
+        this.decisionService = decisionService || new DecisionService();
         this.app = this.buildGraph();
     }
 
@@ -36,6 +36,7 @@ export class GraphService {
             .addNode("agent", this.agentNode.bind(this))
             .addNode("doctor_tool", this.doctorToolNode.bind(this))
             .addNode("lab_tool", this.labToolNode.bind(this))
+            .addNode("advice_tool", this.adviceToolNode.bind(this))
             .addEdge(START, "agent")
             .addConditionalEdges(
                 "agent",
@@ -45,6 +46,8 @@ export class GraphService {
                         return "doctor_tool";
                     } else if (action === 'GET_LAB_TEST') {
                         return "lab_tool";
+                    } else if (action === 'PROVIDE_ADVICE') {
+                        return "advice_tool";
                     } else {
                         return END;
                     }
@@ -52,11 +55,13 @@ export class GraphService {
                 {
                     doctor_tool: "doctor_tool",
                     lab_tool: "lab_tool",
+                    advice_tool: "advice_tool",
                     [END]: END
                 }
             )
             .addEdge("doctor_tool", END)
-            .addEdge("lab_tool", END);
+            .addEdge("lab_tool", END)
+            .addEdge("advice_tool", END);
 
         return workflow.compile();
     }
@@ -111,6 +116,18 @@ export class GraphService {
                 value: suggestion,
                 url: googleLink
             }
+        };
+
+        return { finalResponse: response };
+    }
+
+    private async adviceToolNode(state: typeof GraphState.State): Promise<Partial<typeof GraphState.State>> {
+        const suggestion = state.decision?.suggestion || "Healthy lifestyle changes";
+        const reasoning = state.decision?.reasoning ? ` ${state.decision.reasoning}` : "";
+
+        const response: ServiceResponse = {
+            message: `Based on what you've told me, here is some advice: **${suggestion}**.${reasoning}`,
+            // No action needed for advice, just the message
         };
 
         return { finalResponse: response };
