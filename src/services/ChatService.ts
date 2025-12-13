@@ -90,6 +90,9 @@ export class ChatService {
             2. CRITICAL: Ask EXACTLY ONE question at a time to gather more information. Do NOT ask multiple questions in a single response.
             3. Do NOT diagnose. Instead, suggest possibilities and next steps.
             4. If the user mentions "chest pain", "shortness of breath", or "severe pain", tell them to go to the ER immediately.
+            5. DIRECTNESS: Do NOT use phrases like "To help me understand...", "I will ask...", "To narrow it down...", or "This helps me...". JUST ASK THE QUESTION directly.
+            6. REASONING: Use <think> tags to analyze the situation or plan your question. For example: <think>User has ED, need to check duration.</think> How long have you had this?
+            7. NO EXPLANATIONS: Do not explain WHY you are asking the question in the final output. Just ask it.
             
             CONTEXT:
             ${assessmentContext ? `User Assessment Context: ${assessmentContext}` : ''}`
@@ -114,7 +117,13 @@ export class ChatService {
 
                 // Remove <think>...</think> tags (case insensitive, multiline)
                 // Also handles unclosed <think> tags at the end of the string
-                content = content.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim();
+                content = content.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '');
+
+                // Handle case where <think> is missing but </think> exists (stray closing tag)
+                // We assume everything before a stray </think> is thought process
+                content = content.replace(/^[\s\S]*?<\/think>/gi, '');
+
+                content = content.trim();
 
                 return { message: content };
             }
