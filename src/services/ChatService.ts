@@ -93,6 +93,7 @@ export class ChatService {
             5. DIRECTNESS: Do NOT use phrases like "To help me understand...", "I will ask...", "To narrow it down...", or "This helps me...". JUST ASK THE QUESTION directly.
             6. REASONING: Use <think> tags to analyze the situation or plan your question. For example: <think>User has ED, need to check duration.</think> How long have you had this?
             7. NO EXPLANATIONS: Do not explain WHY you are asking the question in the final output. Just ask it.
+            8. LIFESTYLE FRAMING: When asking about negative lifestyle habits (smoking, drinking, poor diet), frame it as a gentle suggestion followed by a question. Example: "Reducing smoking can help. Would you consider quitting?" instead of just "Are you planning to quit?"
             
             CONTEXT:
             ${assessmentContext ? `User Assessment Context: ${assessmentContext}` : ''}`

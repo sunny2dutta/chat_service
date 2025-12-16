@@ -47,7 +47,7 @@ export class DecisionService {
             {
                 "action": "CONSULT_DOCTOR" | "GET_LAB_TEST" | "ASK_MORE_QUESTIONS" | "PROVIDE_ADVICE",
                 "reasoning": "Brief explanation of why this decision was made",
-                "suggestion": "Specific doctor type, lab test name, or advice (optional, only if action is not ASK_MORE_QUESTIONS)",
+                "suggestion": "Specific doctor type (e.g. Urologist, Cardiologist), lab test name, or advice. REQUIRED if action is NOT ASK_MORE_QUESTIONS.",
                 "uncertainty_score": ${uncertaintyScore} // Pass this back exactly as received
             }
 
@@ -55,21 +55,29 @@ export class DecisionService {
             1. SAFETY FIRST (Highest Priority): If there are any "Red Flags" (severe pain, difficulty breathing, chest pain, sudden onset of severe symptoms), you MUST choose CONSULT_DOCTOR immediately. Safety overrides all costs.
             
             2. COST ANALYSIS:
-               - ASK_MORE_QUESTIONS (Low Cost): Preferred when uncertainty is high (>40) and can be reduced by simple facts.
-               - GET_LAB_TEST (High Cost): Use ONLY if uncertainty is moderate (20-40) AND a specific test will drop it to near 0.
-               - CONSULT_DOCTOR (Super High Cost): Use if safety red flags exist OR if uncertainty is low (<20) but requires prescription/procedure. **NOTE: This is a TERMINAL STATE. Do not try to reduce uncertainty further if a doctor visit is warranted.**
-               - PROVIDE_ADVICE (Low Cost): Use if uncertainty is low (<20) and no medical intervention is needed (e.g., "sleep more", "drink water", "quit smoking"). **NOTE: This is a TERMINAL STATE.**
+               - ASK_MORE_QUESTIONS (Low Cost): Preferred when uncertainty is high (>60) and can be reduced by simple facts.
+               - GET_LAB_TEST (High Cost): Use ONLY if uncertainty is moderate (20-60) AND a specific test will drop it to near 0.
+               - CONSULT_DOCTOR (Super High Cost): Use if safety red flags exist OR if uncertainty is low (<20) but requires prescription/procedure. **NOTE: This is a TERMINAL STATE.**
+               - PROVIDE_ADVICE (Low Cost): Use if uncertainty is low (<20) and no medical intervention is needed. **NOTE: This is a TERMINAL STATE.**
 
             DECISION RULES:
             - If (User says "booked", "scheduled", "will do it", or similar confirmation of previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to acknowledge)
             - If (User says "skipped", "no", "later", "too expensive" to previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to discuss alternatives or reasons)
-            - If (Red Flags) -> CONSULT_DOCTOR
-            - Else If (Uncertainty > 40) -> ASK_MORE_QUESTIONS
-            - Else If (Uncertainty <= 40 AND Specific Hypothesis exists AND Lab Test confirms it) -> GET_LAB_TEST
+            - If (Red Flags) -> CONSULT_DOCTOR (suggestion MUST be a specific specialist like 'Cardiologist', 'Urologist', 'Neurologist'. NEVER just 'Doctor'.)
+            - Else If (Uncertainty > 60) -> ASK_MORE_QUESTIONS
+            - Else If (Uncertainty <= 60 AND Specific Hypothesis exists AND Lab Test confirms it) -> GET_LAB_TEST
             - Else If (Uncertainty < 20 AND No Medical Intervention Needed) -> PROVIDE_ADVICE
-            - Else -> CONSULT_DOCTOR
+            - Else -> CONSULT_DOCTOR (suggestion MUST be a specific specialist. NEVER just 'Doctor'.)
             
-            Do not include any markdown formatting or explanations outside the JSON.`
+            FORMAT:
+            <think>
+            Analyze the situation here...
+            </think>
+            {
+                "action": "...",
+                ...
+            }
+            `
         };
 
         // We only need the last few messages to make a decision, but sending full context is safer for now.
@@ -82,7 +90,7 @@ export class DecisionService {
                 max_tokens: 1000,
                 temperature: 0.1, // Low temperature for deterministic JSON output
                 messages: analysisMessages,
-                response_format: { type: "json_object" } // Force JSON mode if supported, otherwise prompt handles it
+                // response_format: { type: "json_object" } // REMOVED: Let prompt handle format to allow <think> tags
             }, {
                 'Authorization': `Bearer ${apiKey}`
             });
@@ -93,7 +101,10 @@ export class DecisionService {
                 let content = data.choices[0].message.content;
 
                 // Remove <think>...</think> tags (case insensitive, multiline)
-                content = content.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim();
+                content = content.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '');
+
+                // Handle stray closing tags
+                content = content.replace(/^[\s\S]*?<\/think>/gi, '');
 
                 // Clean up potential markdown code blocks if the model adds them despite instructions
                 content = content.replace(/```json/g, '').replace(/```/g, '').trim();

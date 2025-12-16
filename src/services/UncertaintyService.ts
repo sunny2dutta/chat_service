@@ -31,8 +31,8 @@ export class UncertaintyService {
             
             SCORING GUIDE:
             - 80-100: Vague symptoms (e.g., "I feel bad"). No hypothesis. Complete mystery.
-            - 60-80: Some symptoms, broad differential (e.g., "Headache and fatigue").
-            - 40-60: Stronger pattern, but key details missing (e.g., "Thyroid symptoms but need to rule out anemia").
+            - 60-80: Some symptoms, but multiple distinct possibilities (e.g., "Headache" could be stress, dehydration, etc.).
+            - 40-60: Consistent pattern for a specific condition (e.g., "Fatigue + Pale" -> Anemia), even if unconfirmed.
             - 20-40: Strong hypothesis, needs confirmation (e.g., "Classic anemia symptoms, need CBC").
             - 0-20: Clear path identified (e.g., "Red flags present" or "Lab results confirmed").
 
