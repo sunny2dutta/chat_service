@@ -47,7 +47,7 @@ export class DecisionService {
             {
                 "action": "CONSULT_DOCTOR" | "GET_LAB_TEST" | "ASK_MORE_QUESTIONS" | "PROVIDE_ADVICE",
                 "reasoning": "Brief explanation of why this decision was made",
-                "suggestion": "Specific doctor type (e.g. Urologist, Cardiologist), lab test name, or advice. REQUIRED if action is NOT ASK_MORE_QUESTIONS.",
+                "suggestion": "Specific doctor type (e.g. Urologist), SPECIFIC Lab Test Name (e.g. Lipid Panel) - REQUIRED if action is NOT ASK_MORE_QUESTIONS.",
                 "uncertainty_score": ${uncertaintyScore} // Pass this back exactly as received
             }
 
@@ -56,16 +56,16 @@ export class DecisionService {
             
             2. COST ANALYSIS:
                - ASK_MORE_QUESTIONS (Low Cost): Preferred when uncertainty is high (>60) and can be reduced by simple facts.
-               - GET_LAB_TEST (High Cost): Use ONLY if uncertainty is moderate (20-60) AND a specific test will drop it to near 0.
-               - CONSULT_DOCTOR (Super High Cost): Use if safety red flags exist OR if uncertainty is low (<20) but requires prescription/procedure. **NOTE: This is a TERMINAL STATE.**
+               - GET_LAB_TEST (Moderate Cost - Data Gathering): Preferred when uncertainty is moderate (20-60) and a lab test would provide valuable data for a future doctor visit.
+               - CONSULT_DOCTOR (High Cost): Use if safety red flags exist OR if uncertainty is low (<20) but requires prescription/procedure. **NOTE: This is a TERMINAL STATE.**
                - PROVIDE_ADVICE (Low Cost): Use if uncertainty is low (<20) and no medical intervention is needed. **NOTE: This is a TERMINAL STATE.**
 
             DECISION RULES:
             - If (User says "booked", "scheduled", "will do it", or similar confirmation of previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to acknowledge)
             - If (User says "skipped", "no", "later", "too expensive" to previous recommendation) -> ASK_MORE_QUESTIONS (Allow conversational LLM to discuss alternatives or reasons)
-            - If (Red Flags) -> CONSULT_DOCTOR (suggestion MUST be a specific specialist like 'Cardiologist', 'Urologist', 'Neurologist'. NEVER just 'Doctor'.)
+            - CRITICAL: If (Red Flags / Emergency) -> CONSULT_DOCTOR (suggestion MUST be 'Emergency Room' or specific specialist like 'Cardiologist').
             - Else If (Uncertainty > 60) -> ASK_MORE_QUESTIONS
-            - Else If (Uncertainty <= 60 AND Specific Hypothesis exists AND Lab Test confirms it) -> GET_LAB_TEST
+            - Else If (Uncertainty <= 60 AND Lab Test helps diagnosis) -> GET_LAB_TEST (suggestion MUST be specific test name e.g. 'Complete Blood Count', 'Testosterone Panel'. NEVER just 'Lab Test').
             - Else If (Uncertainty < 20 AND No Medical Intervention Needed) -> PROVIDE_ADVICE
             - Else -> CONSULT_DOCTOR (suggestion MUST be a specific specialist. NEVER just 'Doctor'.)
             
